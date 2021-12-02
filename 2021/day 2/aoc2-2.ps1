@@ -1,4 +1,4 @@
-$arrayofcommands1 = @(
+$arrayofcommands = @(
     "forward 4"
     "down 9"
     "forward 6"
@@ -1001,7 +1001,7 @@ $arrayofcommands1 = @(
     "forward 5"
 )
 
-$arrayofcommands = @(
+$arrayofcommands1 = @(
     "forward 5"
     "down 5"
     "forward 8"
@@ -1017,7 +1017,6 @@ $aim = 0
 foreach ($item in $arrayofcommands) {
     switch -regex ($item) {
         forward {
-            "this is forward"
             ($item -match "\d")
             $X = $X + $Matches[0]
             $Y = $Y + ($aim * $Matches[0])
@@ -1025,17 +1024,13 @@ foreach ($item in $arrayofcommands) {
             break
         }
         down {
-            "this is down"
             ($item -match "\d")
-            $Y = $Y + $Matches[0]
             $aim = $aim + $Matches[0]
             "X = $X , Y = $Y , Aim = $aim"
             break
         }
         up {
-            "this is up"
             ($item -match "\d")
-            $Y = $Y - $Matches[0]
             $aim = $aim - $Matches[0]
             "X = $X , Y = $Y , Aim = $aim"
             break
@@ -1043,16 +1038,4 @@ foreach ($item in $arrayofcommands) {
         Default {}
     }
 }
-
-$X
-$Y
-$A
-
 "$X times $Y = $($X * $Y)"
-S X0 Y0 A0
-F X5 Y0 A0
-D X5 Y5 A5
-F X13 Y45 A5
-U X13 Y42 A2
-D X13 Y50 A10
-F X15 Y70 A10
